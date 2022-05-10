@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Punto1 from "./app/Punto1";
 import Punto3 from "./app/Punto3";
 import Punto4 from "./app/Punto4";
-import Punto5 from "./app/Punto5";
+
 import Inicio from "./app/Inicio";
 
 function App() {
