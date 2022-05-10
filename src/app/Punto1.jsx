@@ -27,9 +27,6 @@ export default function Punto1(props) {
   const onFileUpload = (e) => {
     e.preventDefault();
 
-
-    formData.append("myFile", archivo, archivo.name);
-    
     setAlert(true)
   };
 
