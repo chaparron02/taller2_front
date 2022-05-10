@@ -18,7 +18,7 @@ function App() {
         <Route path="/" element={<Inicio />} />
         <Route path="/punto1" element={<Punto1 />} />
         <Route path="/punto4" element={<Punto4 />} />
-        <Route path="/punto5" element={<Punto5 />} />
+        
       </Routes>
     </Router>
   );
