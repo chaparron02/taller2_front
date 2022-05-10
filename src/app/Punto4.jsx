@@ -5,19 +5,16 @@ import {
   ProjectsCard,
   ProjectWrapper,
   ProjectsH1,
-  ProjectsH2,
   Background,
-  Button,
-  ProjectsH3,
 } from "./styled";
 
 export default function Cliente() {
-  const [inmuebles, setInmuebles] = useState([]);
+  const [estado, setEstado] = useState([]);
   const [actualizar, setActualizar] = useState(true)
   const onClick = (e) => {
     e.preventDefault();
-    const { id } = e.target;
-    fetch(`http://localhost:3000/reservar?id=${id}`, {
+    const { code_envio } = e.target;
+    fetch(`http://localhost:3000/cambiarEstado?id=${code_envio}&state`, {
       method: "GET",
       mode: "cors",
 
@@ -32,14 +29,10 @@ export default function Cliente() {
         
       });
   };
-  /*  useEffect(() => {
-    console.log(inmuebles)
-  },[inmuebles]);
-  */
 
   useEffect(() => {
     console.log(1)
-    fetch("http://localhost:3000/consultarInmuebles", {
+    fetch("http://localhost:3000/cambiarEstado", {
       method: "GET",
       mode: "cors",
 
@@ -49,32 +42,20 @@ export default function Cliente() {
     })
       .then((res) => res.json())
       .then((json) => {
-        setInmuebles(json);
+        setEstado(json);
       });
   }, [actualizar]);
   return (
     <Background>
-      <ProjectsH1>Reservar espacio</ProjectsH1>
-      <ProjectsH2>Espacios disponibles</ProjectsH2>
+      <ProjectsH1>Estado del envio</ProjectsH1>
+      
       <ProjectContainer id="services" className="container-fluid">
         <ProjectWrapper>
-          {inmuebles.map((inmueble, index) => {
+          {estado.map((persona, index) => {
             return (
-              <ProjectsCard key={index}>
-                <ProjectsH1>{inmueble.inmueble} </ProjectsH1>
-                <ProjectsH2>Visitantes: {inmueble.numeroVisitantes} </ProjectsH2>
-                <ProjectsH2>Fecha: {inmueble.fecha} </ProjectsH2>
-                <ProjectsH2>Inicio: {inmueble.horaInicio} </ProjectsH2>
-                <ProjectsH2>Fin: {inmueble.horaFin} </ProjectsH2>
-                <Button
-                  id={inmueble._id}
-                  type="button"
-                  className="boton"
-                  onClick={onClick}
-                >
-                  Reservar
-                </Button>
-                
+              <ProjectsCard keey={index}>
+                <h3>Estado del envio{persona.state} </h3>
+                <h3>Codigo de envio{persona.cod_envio}</h3>
               </ProjectsCard>
             );
           })}
